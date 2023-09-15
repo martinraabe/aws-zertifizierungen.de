@@ -12,10 +12,3 @@ Terraform plan
 * Erstellen einer OIA https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_origin_access_identity
 * Erstellen einer Cloudfront Distribution https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution
 * 
-
-Brauch ich das:
-
-resource "aws_s3_bucket_acl" "bucket_aws-zertifizierungen_acl" {
-  bucket = aws_s3_bucket.bucket_aws-zertifizierungen.id
-  acl    = "private"
-}
