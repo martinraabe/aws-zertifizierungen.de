@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Deine Nachricht ans BVA-Cloudteam</title>
+</head>
+<body>
+    <h1>Nachricht an SQS senden</h1>
+    <form id="messageForm">
+        <label for="message">Nachricht:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Senden">
+    </form>
+
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message').value;
+            
+            fetch('https://ub5rlbjgpb.execute-api.eu-central-1.amazonaws.com/prod/', {
+                method: 'POST',
+				headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message }),
+            })
+            .then(response => response.json())
+            .then(data => alert('Nachricht gesendet!'))
+            .catch((error) => console.error('Fehler:', error));
+        });
+    </script>
+	
+	 <h1>Nachricht aus der Queue</h1>
+    <table id="messagesTable">
+        <thead>
+            <tr>
+                <th>Message ID</th>
+                <th>Nachricht</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Nachrichten werden hier eingefügt -->
+        </tbody>
+    </table>
+<script>
+    fetch('https://ub5rlbjgpb.execute-api.eu-central-1.amazonaws.com/prod/messages', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        const tableBody = document.getElementById('messagesTable').getElementsByTagName('tbody')[0];
+        data.forEach(msg => {
+            const row = tableBody.insertRow();
+            const parsedBody = JSON.parse(JSON.parse(msg.Body));
+            row.insertCell(0).innerText = msg.MessageId;
+            row.insertCell(1).innerText = parsedBody.message;
+            const actionsCell = row.insertCell(2);
+            const saveButton = document.createElement('button');
+            saveButton.innerText = 'Speichern und löschen';
+            saveButton.addEventListener('click', () => saveMessage(msg));
+            actionsCell.appendChild(saveButton);
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Löschen';
+            deleteButton.addEventListener('click', () => deleteMessage(msg.ReceiptHandle));
+            actionsCell.appendChild(deleteButton);
+        });
+    })
+    .catch(error => console.error('Fehler:', error));
+
+    function saveMessage(msg) {
+        let bodyObject = {
+            id: msg.MessageId,
+            receiptHandle: msg.ReceiptHandle,
+            Message: msg.body, // Angenommen, dass `weitereDaten` das ist, was Sie speichern möchten
+            messageid: msg.MessageId // Diese Zeile ist wahrscheinlich ein Fehler; Sie sollten hier andere Daten speichern wollen
+        };
+        let jsonBody = JSON.stringify(bodyObject);
+
+        fetch('https://ub5rlbjgpb.execute-api.eu-central-1.amazonaws.com/prod/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonBody,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Daten in DynamoDB gespeichert und aus der Queue gelöscht:', data);
+        })
+        .catch(error => console.error('Fehler beim Speichern:', error));
+    }
+
+    function deleteMessage(receiptHandle) {
+        console.log('Löschen:', receiptHandle);
+        // Implementieren Sie die Logik zum Löschen der Nachricht aus SQS
+    }
+</script>
+</body>
+</html>
+
+
