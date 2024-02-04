@@ -1,0 +1,270 @@
+digraph "Diagram" {
+  splines = "ortho";
+  pad = "1.0";
+  nodesep = "0.60";
+  ranksep = "0.75";
+  fontname = "Sans-Serif";
+  fontsize = "15";
+  dpi = "200";
+  rankdir = "BT";
+  compound = "true";
+  fontcolor = "#222222";
+  edge [
+    color = "#D5871488",
+    penwidth = 2,
+    arrowhead = "dot",
+    arrowtail = "dot",
+  ];
+  node [
+    shape = "box",
+    style = "rounded",
+    fixedsize = true,
+    width = 1.7,
+    height = 1.7,
+    labelloc = "c",
+    imagescale = true,
+    fontname = "Sans-Serif",
+    fontsize = 8,
+    margin = 8,
+  ];
+  subgraph "App" {
+    subgraph "cluster-SubGraph.App" {
+      graph [
+        label = "App",
+        labelloc = "b",
+        labeljust = "l",
+        margin = "10",
+        fontsize = "16",
+        penwidth = "2",
+        pencolor = "#888888",
+        style = "filled,rounded",
+        fillcolor = "#f3f3f3",
+      ];
+      subgraph "cluster-SubGraph.HelloSqsStack" {
+        graph [
+          label = "HelloSqsStack",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#e4e4e4",
+        ];
+        "HelloSqsStack/HelloSqsQueue" [
+          label = " HelloSqsQueue",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_App-Integration/Arch_64/Arch_AWS-Simple-Queue-Service_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "HelloSqsStack/MyTable" [
+          label = " MyTable",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Database/64/Arch_Amazon-DynamoDB_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "HelloSqsStack/HelloLambda" [
+          label = " HelloLambda",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "HelloSqsStack/savedynamodbdeletesqs" [
+          label = "\nsavedynamodbdeletesqs",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.4819999999999998,
+        ];
+        "HelloSqsStack/SQSReader" [
+          label = " SQSReader",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "HelloSqsStack/HelloApi" [
+          label = " HelloApi",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-API-Gateway_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+      }
+      subgraph "cluster-SubGraph.MyStaticSiteStack" {
+        graph [
+          label = "MyStaticSiteStack",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#e4e4e4",
+        ];
+        "MyStaticSiteStack/MyWebsiteBucket" [
+          label = " MyWebsiteBucket",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Storage/64/Arch_Amazon-S3-Standard_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "MyStaticSiteStack/OAI" [
+          label = " OAI",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Resource/Res_Security-Identity-and-Compliance/Res_48_Dark/Res_AWS-Identity-Access-Management_Permissions_48_Dark_gen.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "MyStaticSiteStack/MyDistribution" [
+          label = " MyDistribution",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Networking-Content/64/Arch_Amazon-CloudFront_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.266,
+        ];
+        "MyStaticSiteStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C" [
+          label = " Custom \nCDKBucketDeployment86",
+          fontsize = 12,
+          image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.4819999999999998,
+        ];
+        subgraph "cluster-SubGraph.DeployWebsite" {
+          graph [
+            label = "DeployWebsite",
+            labelloc = "b",
+            labeljust = "l",
+            margin = "10",
+            fontsize = "16",
+            penwidth = "2",
+            pencolor = "#888888",
+            style = "filled,rounded",
+            fillcolor = "#d6d6d6",
+          ];
+          "MyStaticSiteStack/DeployWebsite/AwsCliLayer" [
+            label = " AwsCliLayer",
+            fontsize = 12,
+            image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Compute/64/Arch_AWS-Lambda_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 2,
+            height = 2.266,
+          ];
+          "MyStaticSiteStack/DeployWebsite/CustomResource" [
+            label = " CloudFormation\nCustomResource\nCustomResource",
+            fontsize = 12,
+            image = "/home/ec2-user/.nvm/versions/node/v20.11.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Management-Governance/64/Arch_AWS-CloudFormation_64@5x.png",
+            imagescale = "true",
+            imagepos = "tc",
+            penwidth = "0",
+            shape = "node",
+            fixedsize = "true",
+            labelloc = "b",
+            width = 1.2,
+            height = 1.898,
+          ];
+        }
+      }
+    }
+  }
+  "HelloSqsStack/HelloLambda" -> "HelloSqsStack/HelloSqsQueue" [
+    dir = "both",
+  ];
+  "HelloSqsStack/savedynamodbdeletesqs" -> "HelloSqsStack/HelloSqsQueue" [
+    dir = "both",
+  ];
+  "HelloSqsStack/savedynamodbdeletesqs" -> "HelloSqsStack/MyTable" [
+    dir = "both",
+  ];
+  "HelloSqsStack/SQSReader" -> "HelloSqsStack/HelloSqsQueue" [
+    dir = "both",
+  ];
+  "HelloSqsStack/HelloApi" -> "HelloSqsStack/HelloLambda" [
+    dir = "both",
+  ];
+  "HelloSqsStack/HelloApi" -> "HelloSqsStack/SQSReader" [
+    dir = "both",
+  ];
+  "HelloSqsStack/HelloApi" -> "HelloSqsStack/savedynamodbdeletesqs" [
+    dir = "both",
+  ];
+  "MyStaticSiteStack/MyDistribution" -> "MyStaticSiteStack/MyWebsiteBucket" [
+    dir = "both",
+  ];
+  "MyStaticSiteStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C" -> "MyStaticSiteStack/MyWebsiteBucket" [
+    dir = "both",
+  ];
+  "MyStaticSiteStack/Custom__CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C" -> "MyStaticSiteStack/DeployWebsite/AwsCliLayer" [
+    dir = "both",
+  ];
+}

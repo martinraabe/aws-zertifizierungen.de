@@ -15,6 +15,8 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * 
 # hello-sqs 
 
+for creating diagrams https://github.com/pistazie/cdk-dia?tab=readme-ov-file
+
 mkdir hello-sqs
 cd hello-sqs
 cdk init app --language=typescript
